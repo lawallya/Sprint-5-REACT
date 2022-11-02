@@ -13,8 +13,8 @@ const cargarChiste = () => __awaiter(void 0, void 0, void 0, function* () {
         const respChiste = yield fetch('https://icanhazdadjoke.com/', { headers: {
                 Accept: "application/json",
             }, });
-        console.log(respChiste);
-        const datosChiste = yield respChiste.json(); //objeto
+        //console.log(respChiste);//hay 3 parametros: id, joke y status, me interesa joke.
+        const datosChiste = yield respChiste.json(); //objeto recibido desde el servidor
         console.log(datosChiste.joke); //aqui el chiste solamente.
         //ahora tengo que poner el chiste en pantalla
         document.getElementById("chiste").innerHTML = datosChiste.joke;
@@ -23,4 +23,3 @@ const cargarChiste = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
-cargarChiste();
