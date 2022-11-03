@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sprint5</title>
 </head>
+
 <body>
     <main class="container-fluid" id="container">
         <h1 class="titulo">Preparate para reir....</h1>
-        <button class ="btn-success" id = "botonSiguiente" onclick="cargarChiste()">Mostrar chiste </button>
-        <p id="chiste" ></p>
-        
+        <p id="chiste"></p>
+        <div class="containerBotones">
+            <button id="puntuacion1" onclick="valorar(1)">1. Malísimo</button>
+            <button id="puntuacion2" onclick="valorar(2)">2. Bien</button>
+            <button id="puntuacion3" onclick="valorar(3)">3. Muy bueno</button>
+        </div>
+        <button class="btn-success" id="botonSiguiente" onclick="cargarChiste()">Mostrar chiste </button>
 
     </main>
-   <script src="/src/codigo.js"></script> 
+    <script src="/src/codigo.js"></script>
 </body>
+
 </html>
