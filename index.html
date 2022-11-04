@@ -10,15 +10,17 @@
 
 <body>
     <main class="container-fluid" id="container">
-        <h1 class="titulo">Preparate para reir....</h1>
-        <p id="chiste"></p>
-        <div class="containerBotones">
-            <button id="puntuacion1" onclick="valorar(1)">1. Malísimo</button>
-            <button id="puntuacion2" onclick="valorar(2)">2. Bien</button>
-            <button id="puntuacion3" onclick="valorar(3)">3. Muy bueno</button>
+        <div class="claseTiempo" id="tiempo"> El tiempo en estos momentos:</div>
+        <div class="chiste">
+            <h1 class="titulo">Preparate para reir....</h1>
+            <p id="chiste"></p>
+            <div class="containerBotones">
+                <button id="puntuacion1" onclick="valorar(1)">1. Malísimo</button>
+                <button id="puntuacion2" onclick="valorar(2)">2. Bien</button>
+                <button id="puntuacion3" onclick="valorar(3)">3. Muy bueno</button>
+            </div>
+            <button class="btn-success" id="botonSiguiente" onclick="cargarChiste()">Mostrar chiste </button>
         </div>
-        <button class="btn-success" id="botonSiguiente" onclick="cargarChiste()">Mostrar chiste </button>
-
     </main>
     <script src="/src/codigo.js"></script>
 </body>
