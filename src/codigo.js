@@ -8,13 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const cargarChiste = () => __awaiter(void 0, void 0, void 0, function* () {
+const cargarChiste = (api) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const respChiste = yield fetch('https://icanhazdadjoke.com/', {
-            headers: {
-                Accept: "application/json",
-            },
-        });
+        const respChiste = yield fetch(api.url, api.header);
         //console.log(respChiste);//hay 3 parametros: id, joke y status, me interesa joke.
         const datosChiste = yield respChiste.json(); //objeto recibido desde el servidor
         console.log(datosChiste.joke); //aqui el chiste solamente.
@@ -39,29 +35,6 @@ function valorar(valoracion) {
     };
     reportJoke.push(reportAcudit);
     console.table(reportJoke);
-    // Funciona tambien  
-    //let reportAcudit:{joke:string, score:number, date:string}; //o lo inicializo y utilizo const. 
-    //joke lo saca de la API, lo muestra y si se va a puntuar lo guarda.
-    // score lo saca de la pantalla, de los botones ¿enum?
-    //date lo saca del equipo local, pero antes de guardarlo hay que transformarlo.
-    /*let fecha = new Date();
-    let fechaString = fecha.toISOString();
-    console.log (fechaString);
-    let chisteValorado = document.getElementById("chiste").innerHTML;
-    console.log(chisteValorado);
-    let puntuacion = valoracion;
-    console.log(puntuacion);
-    let  reportAcudit : { joke:string, score:number, date: string} = {joke:'inicial', score:3, date: 'prueba'};
-         reportAcudit.joke = chisteValorado;
-        reportAcudit.score = puntuacion;
-        reportAcudit.date= fechaString;
-    
-        console.table(reportAcudit);
-    
-        reportJokes.push(reportAcudit);
-        console.table(reportJokes);
-        Esto funciona pero voy a intentarlo con interfaces*/
-    //interface ReportAcudit { joke:string, score: number, date :string};
 }
 ;
 // NIVEL 2, EJERCICIO 4: 
@@ -87,3 +60,34 @@ const infoTiempo = () => __awaiter(void 0, void 0, void 0, function* () {
     document.getElementById("tiempo").innerHTML = infoMeteo + " " + infoTemperatura.toFixed(0) + "ºC";
 });
 infoTiempo();
+//EJERCICIO 5
+/**alterna chistes de dos APIs para que no se aburran.
+ * cada vez que se clica el boton "chiste sigiente" se actualiza un contador
+ * cuando el contador sea impar busca chistes del ejercicio 1
+ * cuanod sea par, busca en la nueva API que es en español para ver que efectivamente se alternan.
+ * No hace falta que vuelva a escribir la uno, solo que  ponga en contador y la llamda a la segunca API
+ * o que la funcion del ejercicio 1 reciba como parámetro la url de la APi, el desarrollo del if se puede simplificar mucho
+ * Entonces tengo el rollo de tipar los parametros, o pongo que puede recibir 2 tipos != o uno con otro parametro opcional?
+ * O genero una clase que prepare el parametro api para que se envíe a la fn
+ *  */
+let contador = 0;
+const apiUno = {
+    url: "https://icanhazdadjoke.com/",
+    header: {
+        headers: {
+            Accept: "application/json",
+        },
+    }
+};
+const apiDos = { url: "https://v2.jokeapi.dev/joke/Any?lang=es&type=single" }; //no he definido el tipo de apiDos
+const cargarChistesAlternos = () => {
+    //console.log("contador: ", contador );
+    ++contador;
+    //console.log("contador: ", contador );
+    if (contador % 2 != 0) {
+        cargarChiste(apiUno);
+    } //chiste impar en ingles
+    else {
+        cargarChiste(apiDos);
+    } //chiste par en español
+};
